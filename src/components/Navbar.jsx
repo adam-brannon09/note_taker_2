@@ -14,11 +14,11 @@ function Navbar() {
     }
 
     return (
-        <div className="navbar bg-base-100">
-            <div className="navbar-start">
-                <a className="btn btn-ghost text-xl">{name}'s Notes </a>
+        <div className="navbar bg-base-100 mt-3">
+            <div className="navbar-start ml-5">
+                <p className="text-3xl">{name}'s Notes</p>
             </div>
-            <div className="navbar-end">
+            <div className="navbar-end mr-5">
                 <button className="btn" onClick={onLogout}>Log Out</button>
             </div>
         </div>

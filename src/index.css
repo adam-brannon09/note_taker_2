@@ -61,7 +61,43 @@ body {
 	right: 37%;
 }
 
-.main-note {
-	width: 60%;
+.navbar {
+	margin-bottom: 2rem;
+}
+
+.noteScreen {
+	display: flex;
+	flex-direction: row;
+	height: 95vh;
+	justify-content: space-between;
+	margin: 0 4rem;
+}
+
+.prevEntries {
+	display: flex;
+	flex-direction: column;
+	width: 30%;
+	height: 80%;
+}
+
+.prevEntry {
+	width: 20rem;
+}
+
+.textarea {
+	width: 70%;
+	height: 80%;
+}
+
+.actionsContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
 	height: 70%;
+	margin-left: 2rem;
+	margin-right: -1rem;
+}
+
+.actionIcon {
+	cursor: pointer;
 }
