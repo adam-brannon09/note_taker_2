@@ -78,10 +78,11 @@ body {
 	flex-direction: column;
 	justify-content: start;
 	height: 80%;
+	width: 20%;
 }
 
 .prevEntry {
-	width: 20rem;
+	width: 15rem;
 }
 
 .textareaContainer {
