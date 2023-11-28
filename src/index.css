@@ -1,3 +1,67 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+	margin: 0;
+}
+
+#root {
+	width: 100%;
+	height: 100%;
+}
+
+.welcome {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.title {
+	font-size: 4rem;
+	font-weight: 400;
+	text-align: center;
+	margin: 2rem auto;
+}
+
+.formContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 3rem;
+	border: 1px solid rgba(0, 0, 0, 0.057);
+	box-shadow: 0 0 50px rgba(49, 48, 48, 0.032);
+	margin-bottom: 3rem;
+}
+
+.input-email {
+	margin: 1rem;
+	width: 400px;
+}
+
+.input-password {
+	margin: 1rem;
+	width: 400px;
+	margin-bottom: 3rem;
+}
+
+.showPassword {
+	cursor: pointer;
+	position: absolute;
+	top: 47%;
+	right: 38%;
+}
+
+.showPassword2 {
+	cursor: pointer;
+	position: absolute;
+	top: 60%;
+	right: 37%;
+}
+
+.main-note {
+	width: 60%;
+	height: 70%;
+}
