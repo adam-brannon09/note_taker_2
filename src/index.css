@@ -69,14 +69,14 @@ body {
 	display: flex;
 	flex-direction: row;
 	height: 95vh;
-	justify-content: space-between;
+	justify-content: space-evenly;
 	margin: 0 4rem;
 }
 
 .prevEntries {
 	display: flex;
 	flex-direction: column;
-	width: 30%;
+	justify-content: start;
 	height: 80%;
 }
 
@@ -84,9 +84,26 @@ body {
 	width: 20rem;
 }
 
+.textareaContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 85%;
+}
+
+.titleDiv {
+	margin-bottom: 1rem;
+	margin-top: 0;
+}
+.titleInput {
+	margin-left: 2rem;
+}
+
 .textarea {
-	width: 70%;
-	height: 80%;
+	width: 90%;
+	height: 100%;
 }
 
 .actionsContainer {
@@ -94,8 +111,6 @@ body {
 	flex-direction: column;
 	justify-content: space-evenly;
 	height: 70%;
-	margin-left: 2rem;
-	margin-right: -1rem;
 }
 
 .actionIcon {
