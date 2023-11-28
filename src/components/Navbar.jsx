@@ -6,6 +6,8 @@ function Navbar() {
     const navigate = useNavigate()
     const auth = getAuth()
 
+    const name = auth.currentUser.displayName
+
     const onLogout = () => {
         auth.signOut()
         navigate("/")
@@ -14,7 +16,7 @@ function Navbar() {
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
-                <a className="btn btn-ghost text-xl">Welcome Name!</a>
+                <a className="btn btn-ghost text-xl">{name}'s Notes </a>
             </div>
             <div className="navbar-end">
                 <button className="btn" onClick={onLogout}>Log Out</button>

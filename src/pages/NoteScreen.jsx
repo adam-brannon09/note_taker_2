@@ -9,10 +9,7 @@ function NoteScreen() {
         <>
             <Navbar />
             <div className='bg-stone-200 h-screen'>
-                <div>
-                </div>
-                <List />
-                <Input />
+
             </div>
         </>
     )
