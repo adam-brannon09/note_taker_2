@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { toast } from "react-toastify"
-import visibilityIcon from "../assets/svg/visibilityIcon.svg"
 import { useNavigate } from "react-router-dom"
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
 import { doc, setDoc } from "firebase/firestore"
@@ -37,11 +36,8 @@ function SignUp() {
             const formDataCopy = { ...formData }
             delete formDataCopy.password
             await setDoc(doc(db, "users", user.uid), formDataCopy)
-
-            console.log(user)
             navigate("/note")
         } catch (error) {
-            console.log(error)
             toast.error("Error signing up")
         }
     }
@@ -79,15 +75,22 @@ function SignUp() {
                         value={password}
                         onChange={handleChange}
                     />
-                    <img
-                        src={visibilityIcon}
-                        alt="show password"
-                        className="showPassword2"
-                        onClick={() => setShowPassword((prev) => !prev)}
-                    />
-                    <button className="btn btn-lg btn-wide">
-                        Register
-                    </button>
+                    <div>
+                        <button className="btn btn-lg btn-wide">
+                            Register
+                        </button>
+                        <div className="form-control mt-1">
+                            <label className="label cursor-pointer">
+                                <span className="label-text">Show Password</span>
+                                <input
+                                    type="checkbox"
+                                    className="toggle"
+                                    unchecked
+                                    onClick={() => setShowPassword((prev) => !prev)} />
+
+                            </label>
+                        </div>
+                    </div>
                     <br />
                     <Link to='/'>Already a member? Sign In!</Link>
 

@@ -1,20 +1,19 @@
 import Navbar from '../components/Navbar'
 import { useState, useEffect, useRef } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
-import { doc, updateDoc, addDoc, collection, getDocs, serverTimestamp, query, where } from 'firebase/firestore'
+import { addDoc, collection, getDocs, serverTimestamp, query, where } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { v4 as uuidv4 } from 'uuid'
 import { toast } from 'react-toastify'
+import List from '../components/List'
 
 
 function NoteScreen() {
     // eslint-disable-next-line
     const auth = getAuth()
-    const navigate = useNavigate()
 
 
-
+    const [isSmallScreen, setIsSmallScreen] = useState(false)
     const [previousEntries, setPreviousEntries] = useState([])
     const [formData, setFormData] = useState({
         noteText: "",
@@ -64,7 +63,8 @@ function NoteScreen() {
             }
         }
         fetchPreviousEntries()
-    }, [auth.currentUser.uid, isMounted])
+
+    }, [auth.currentUser.uid, formData])
 
 
     // function for the clear button to clear the text area and title input
@@ -88,10 +88,8 @@ function NoteScreen() {
             formDataCopy.noteId = uuidv4()
 
             const docRef = await addDoc(collection(db, 'notes'), formDataCopy)
-            console.log(`This should be the saved note id: ${docRef.id}`)
             setFormData({ ...formData, noteText: '', title: '' })
             toast.success('Note saved successfully')
-            // navigate(`/edit/${docRef.id}`)
         }
     }
     const onMutate = (e) => {
@@ -108,7 +106,16 @@ function NoteScreen() {
         }));
 
     }
+    useEffect(() => {
+        const handleResize = () => {
+            setIsSmallScreen(window.innerWidth < 900);
+            console.log(window.innerWidth); // Optional: Log the window width for debugging
+            console.log(isSmallScreen);
+            addEventListener('resize', handleResize)
 
+        }
+        handleResize()
+    }, []);
 
 
     return (
@@ -116,24 +123,7 @@ function NoteScreen() {
             <Navbar />
             <div className="noteScreen">
                 {/* previous entries */}
-                <div className="prevEntries">
-                    <h1 className='text-3xl mb-9'>Previous Entries</h1>
-                    <ul>
-                        {previousEntries.map((entry) => {
-                            return (
-                                <Link
-                                    className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg prevEntry mb-2"
-                                    to={`/edit/${entry.docId}`}
-                                    // id={entry.noteId}
-                                    key={entry.noteId}>
-                                    {entry.title}
-                                </Link>
-
-                            )
-                        })}
-
-                    </ul>
-                </div>
+                <List previousEntries={previousEntries} />
                 {/* note input area */}
                 <div className='textareaContainer' onSubmit={onSubmit}>
                     <div className='titleDiv'>
@@ -159,7 +149,7 @@ function NoteScreen() {
                         placeholder="Enter your notes here..."
                         value={noteText}
                         id="noteText"
-                        maxLength='60'
+                        maxLength='100'
                         minLength='0'
                         required
                         onChange={onMutate}
@@ -167,9 +157,9 @@ function NoteScreen() {
                     </textarea>
                 </div>
 
-                {/* save and clear buttons */}
-                <div className='actionsContainer'>
-                    {/* save text btn */}
+                {/* <Actions /> */}
+                <div className={isSmallScreen ? 'actionsContainer2' : 'actionsContainer'}>
+
                     <button
                         type='button'
                         className='btn btn-success'
@@ -178,13 +168,12 @@ function NoteScreen() {
                     >
                         Save
                     </button>
-                    {/* clear text btn */}
+
                     <button
                         type='button'
                         className='btn btn-warning'
                         id='clearBtn'
                         onClick={onClear}
-
                     >
                         Clear
                     </button>

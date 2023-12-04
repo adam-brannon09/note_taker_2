@@ -47,20 +47,6 @@ body {
 	margin-bottom: 3rem;
 }
 
-.showPassword {
-	cursor: pointer;
-	position: absolute;
-	top: 47%;
-	right: 38%;
-}
-
-.showPassword2 {
-	cursor: pointer;
-	position: absolute;
-	top: 60%;
-	right: 37%;
-}
-
 .navbar {
 	margin-bottom: 2rem;
 }
@@ -73,6 +59,29 @@ body {
 	margin: 0 4rem;
 }
 
+@media (max-width: 900px) {
+	.navbar {
+		text-align: center;
+	}
+	.noteScreen {
+		/* display: flex; */
+		flex-direction: column;
+		height: 100vh;
+		align-items: center;
+	}
+	.actionsContainer2 {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+		align-items: center;
+		width: 100%;
+	}
+	.actionsContainer2 button {
+		width: 30%;
+		margin: 1rem;
+	}
+}
+
 .prevEntries {
 	display: flex;
 	flex-direction: column;
@@ -82,7 +91,21 @@ body {
 }
 
 .prevEntry {
-	width: 15rem;
+	width: 100%;
+}
+
+.select {
+	width: 400px;
+	margin-bottom: 3rem;
+}
+
+.alert {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 10rem;
+	width: 25rem;
 }
 
 .textareaContainer {
@@ -100,11 +123,13 @@ body {
 }
 .titleInput {
 	margin-left: 2rem;
+	font-size: large;
 }
 
 .textarea {
 	width: 90%;
 	height: 100%;
+	font-size: large;
 }
 
 .actionsContainer {

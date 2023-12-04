@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { toast } from 'react-toastify'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
-import visibilityIcon from "../assets/svg/visibilityIcon.svg"
+
 
 
 function SignIn() {
@@ -65,16 +65,23 @@ function SignIn() {
                         value={password}
                         onChange={handleChange}
                     />
-                    <img
-                        src={visibilityIcon}
-                        alt="show password"
-                        className="showPassword"
-                        onClick={() => setShowPassword((prev) => !prev)}
-                    />
 
-                    <button className="btn btn-lg btn-wide">
-                        Login
-                    </button>
+                    <div>
+                        <button className="btn btn-lg btn-wide">
+                            Login
+                        </button>
+                        <div className="form-control mt-1">
+                            <label className="label cursor-pointer">
+                                <span className="label-text">Show Password</span>
+                                <input
+                                    type="checkbox"
+                                    className="toggle"
+                                    unchecked
+                                    onClick={() => setShowPassword((prev) => !prev)} />
+
+                            </label>
+                        </div>
+                    </div>
                     <br />
                     <Link to='/sign-up'>Not a member? Sign Up!</Link>
                     <br />

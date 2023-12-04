@@ -12,7 +12,7 @@ function EditScreen() {
     const navigate = useNavigate()
     const isMounted = useRef(true)
 
-
+    const [isSmallScreen, setIsSmallScreen] = useState(false)
     const [loading, setLoading] = useState(false)
     const [formData, setFormData] = useState({
         noteText: "",
@@ -79,81 +79,90 @@ function EditScreen() {
         setFormData({ ...formData, [e.target.id]: e.target.value })
     }
 
+    useEffect(() => {
+        const handleResize = () => {
+            setIsSmallScreen(window.innerWidth < 900);
+            console.log(window.innerWidth); // Optional: Log the window width for debugging
+            console.log(isSmallScreen);
+            addEventListener('resize', handleResize)
+
+        }
+        handleResize()
+    }, []);
+
 
     return (
+
         <>
-
-            <>
-                <Navbar />
-                <div className="noteScreen">
-                    {/* note input area */}
-                    <div className='textareaContainer' onSubmit={onSubmit}>
-                        <div className='titleDiv'>
-                            <label className='text-4xl' htmlFor="title">Note Title:</label>
-                            {/* note title input */}
-                            <input
-                                type="text"
-                                className='input input-bordered titleInput'
-                                id='title'
-                                value={title}
-                                placeholder='Enter note title here...'
-                                maxLength='60'
-                                minLength='1'
-                                required
-                                onChange={onMutate}
-
-                            />
-                        </div>
-                        {/* note text input */}
-                        <textarea
-
-                            className="textarea textarea-bordered"
-                            placeholder="Enter your notes here..."
-                            value={noteText}
-                            id="noteText"
+            <Navbar />
+            <div className="noteScreen">
+                {/* note input area */}
+                <div className='textareaContainer' onSubmit={onSubmit}>
+                    <div className='titleDiv'>
+                        <label className='text-4xl' htmlFor="title">Note Title:</label>
+                        {/* note title input */}
+                        <input
+                            type="text"
+                            className='input input-bordered titleInput'
+                            id='title'
+                            value={title}
+                            placeholder='Enter note title here...'
                             maxLength='60'
-                            minLength='0'
+                            minLength='1'
                             required
                             onChange={onMutate}
-                        >
-                        </textarea>
+
+                        />
                     </div>
+                    {/* note text input */}
+                    <textarea
 
-                    {/* save and clear buttons */}
-                    <div className='actionsContainer'>
-                        {/* save text btn */}
-                        <button
-                            type='button'
-                            className='btn btn-success'
-                            id='saveBtn'
-                            onClick={onSubmit}
-                        >
-                            Save
-                        </button>
-                        {/* clear text btn */}
-                        <button
-                            type='button'
-                            className='btn btn-warning'
-                            id='clearBtn'
-                            onClick={onClear}
+                        className="textarea textarea-bordered"
+                        placeholder="Enter your notes here..."
+                        value={noteText}
+                        id="noteText"
+                        maxLength='60'
+                        minLength='0'
+                        required
+                        onChange={onMutate}
+                    >
+                    </textarea>
+                </div>
 
-                        >
-                            Clear
-                        </button>
-                        {/* delete note */}
-                        <button
-                            type='button'
-                            className='btn btn-error'
-                            id='deleteBtn'
-                            onClick={onDelete}
+                {/* save and clear buttons */}
+                <div className={isSmallScreen ? 'actionsContainer2' : 'actionsContainer'}>
+                    {/* save text btn */}
+                    <button
+                        type='button'
+                        className='btn btn-success'
+                        id='saveBtn'
+                        onClick={onSubmit}
+                    >
+                        Save Changes
+                    </button>
+                    {/* clear text btn */}
+                    <button
+                        type='button'
+                        className='btn btn-warning'
+                        id='clearBtn'
+                        onClick={onClear}
 
-                        >
-                            Delete
-                        </button>
-                    </div>
-                </div >
-            </>
+                    >
+                        Clear
+                    </button>
+                    {/* delete note */}
+                    <button
+                        type='button'
+                        className='btn btn-error'
+                        id='deleteBtn'
+                        onClick={onDelete}
 
+                    >
+                        Delete
+                    </button>
+
+                </div>
+            </div >
         </>
 
     )
