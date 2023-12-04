@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
 import { doc, setDoc } from "firebase/firestore"
 import { db } from "../firebase.config"
+import OAuth from "../components/OAuth"
 
 function SignUp() {
     const [showPassword, setShowPassword] = useState(false)
@@ -79,7 +80,7 @@ function SignUp() {
                         <button className="btn btn-lg btn-wide">
                             Register
                         </button>
-                        <div className="form-control mt-1">
+                        <div className="form-control mt-2">
                             <label className="label cursor-pointer">
                                 <span className="label-text">Show Password</span>
                                 <input
@@ -92,7 +93,9 @@ function SignUp() {
                         </div>
                     </div>
                     <br />
-                    <Link to='/'>Already a member? Sign In!</Link>
+
+                    <OAuth />
+                    <Link to='/' className="mt-1">Already a member? Sign In!</Link>
 
 
                 </form>

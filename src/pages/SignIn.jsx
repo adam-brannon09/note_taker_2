@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { toast } from 'react-toastify'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import OAuth from "../components/OAuth"
 
 
 
@@ -83,6 +84,8 @@ function SignIn() {
                         </div>
                     </div>
                     <br />
+                    {/* <Link to='/sign-up'>Not a member? Sign Up!</Link> */}
+                    <OAuth />
                     <Link to='/sign-up'>Not a member? Sign Up!</Link>
                     <br />
                     <Link to='/forgot-password'>Forgot Password?</Link>

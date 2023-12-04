@@ -30,7 +30,6 @@ function ForgotPassword() {
 
         <div className="welcome" >
             <h1 className="title">Forgot Password</h1>
-
             <div >
                 <form onSubmit={handleSubmit} className="formContainer">
                     <label className="form-control">
