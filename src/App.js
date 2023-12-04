@@ -2,6 +2,7 @@
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import NoteScreen from "./pages/NoteScreen";
+import EditScreen from "./pages/EditScreen";
 import PrivateRoute from "./components/PrivateRoute";
 // react router 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -20,6 +21,7 @@ function App() {
           <Route path="/note" element={<PrivateRoute />}>
             <Route path="/note" element={<NoteScreen />} />
           </Route>
+          <Route path="/edit/:noteId" element={<EditScreen />} />
         </Routes>
       </Router>
       <ToastContainer />

@@ -1,5 +1,6 @@
 import Navbar from '../components/Navbar'
 import { useState, useEffect, useRef } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { doc, updateDoc, addDoc, collection, getDocs, serverTimestamp, query, where } from 'firebase/firestore'
 import { db } from '../firebase.config'
@@ -10,11 +11,15 @@ import { toast } from 'react-toastify'
 function NoteScreen() {
     // eslint-disable-next-line
     const auth = getAuth()
-    const [previousEntry, setPreviousEntry] = useState([])
+    const navigate = useNavigate()
+
+
+
+    const [previousEntries, setPreviousEntries] = useState([])
     const [formData, setFormData] = useState({
         noteText: "",
         title: "",
-        noteId: uuidv4(),
+        noteId: "",
         userName: auth.currentUser.displayName,
     })
     const { noteText, title } = formData
@@ -34,6 +39,7 @@ function NoteScreen() {
         return () => {
             isMounted.current = false
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isMounted])
 
     //retrieve previous entries
@@ -46,23 +52,19 @@ function NoteScreen() {
                 const q = query(notesRef, where('userRef', '==', auth.currentUser.uid))
                 // get docs from query
                 const querySnapshot = await getDocs(q)
-                // create empty array to push docs to
-
-                // this method was causing duplicate entries to be pushed to the array
-                // querySnapshot.forEach((doc) => {
-                //     return previousEntry.push(doc.data())
-                // })
-
                 // map through docs and push to previousEntries array
-                const previousEntries = querySnapshot.docs.map((doc) => doc.data())
-                setPreviousEntry(previousEntries)
+                const previousEntries = querySnapshot.docs.map((doc) => ({
+                    docId: doc.id,
+                    ...doc.data(),
+                }))
+                setPreviousEntries(previousEntries)
                 // setPreviousEntry(previousEntry)
             } catch (error) {
                 console.log(error)
             }
         }
         fetchPreviousEntries()
-    }, [auth.currentUser.uid, previousEntry])
+    }, [auth.currentUser.uid, isMounted])
 
 
     // function for the clear button to clear the text area and title input
@@ -72,25 +74,28 @@ function NoteScreen() {
 
     const onSubmit = async (e) => {
         e.preventDefault()
+        if (!title || !noteText) {
+            toast.error('Please enter a title and some text!')
 
-        const formDataCopy = { ...formData, date: serverTimestamp() }
+        } else {
+            const formDataCopy = {
+                ...formData,
+                date: serverTimestamp(),
+            }
 
-        formDataCopy.noteText = noteText
-        formDataCopy.title = title
+            formDataCopy.noteText = noteText
+            formDataCopy.title = title
+            formDataCopy.noteId = uuidv4()
 
-        const docRef = await addDoc(collection(db, 'notes'), formDataCopy)
-        setFormData({ ...formData, noteText: '', title: '' })
-        toast.success('Note saved successfully')
+            const docRef = await addDoc(collection(db, 'notes'), formDataCopy)
+            console.log(`This should be the saved note id: ${docRef.id}`)
+            setFormData({ ...formData, noteText: '', title: '' })
+            toast.success('Note saved successfully')
+            // navigate(`/edit/${docRef.id}`)
+        }
     }
     const onMutate = (e) => {
-        // when written this way it would not allow the user to delete all of the text in the input and textarea. it would leave one letter.
-        // if (e.target.value) {
-        //     setFormData((prevState) => ({
-        //         ...prevState,
-        //         [e.target.id]: e.target.value,
-        //     }))
-        // }
-
+        // destructure id and value from event target
         const { id, value } = e.target;
 
         // Ensure value is set to an empty string if it's undefined or null
@@ -99,10 +104,12 @@ function NoteScreen() {
         setFormData((prevState) => ({
             ...prevState,
             [id]: updatedValue,
+
         }));
 
-
     }
+
+
 
     return (
         <>
@@ -112,16 +119,16 @@ function NoteScreen() {
                 <div className="prevEntries">
                     <h1 className='text-3xl mb-9'>Previous Entries</h1>
                     <ul>
-                        {/* <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg prevEntry">
-                        </button> */}
-                        {previousEntry.map((entry) => {
+                        {previousEntries.map((entry) => {
                             return (
-                                <button
+                                <Link
                                     className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg prevEntry mb-2"
-                                    id={entry.noteId}
-                                >
+                                    to={`/edit/${entry.docId}`}
+                                    // id={entry.noteId}
+                                    key={entry.noteId}>
                                     {entry.title}
-                                </button>
+                                </Link>
+
                             )
                         })}
 
@@ -181,25 +188,8 @@ function NoteScreen() {
                     >
                         Clear
                     </button>
-                    {/* delete note */}
-                    <button
-                        type='button'
-                        className='btn btn-error'
-                        id='deleteBtn'
-
-                    >
-                        Delete
-                    </button>
                 </div>
-
-
-
-
-                {/* <List />
-                <Input />
-                <Actions /> */}
-
-            </div>
+            </div >
         </>
     )
 }
