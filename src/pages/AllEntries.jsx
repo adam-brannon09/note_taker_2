@@ -27,7 +27,7 @@ function AllEntries() {
                         })
                     })
                 } else {
-                    toast.error('You are not logged in')
+                    console.log('no user')
                 }
             })
         }

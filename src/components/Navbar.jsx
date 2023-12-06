@@ -10,8 +10,12 @@ function Navbar() {
     const name = auth.currentUser ? auth.currentUser.displayName : ""
 
     const onLogout = () => {
-        auth.signOut()
-        navigate("/")
+        try {
+            auth.signOut()
+            navigate("/")
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (

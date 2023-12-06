@@ -11,9 +11,10 @@ function EditScreen() {
     const params = useParams()
     const navigate = useNavigate()
     const isMounted = useRef(true)
+    const ref = window
 
     const [isSmallScreen, setIsSmallScreen] = useState(false)
-    const [loading, setLoading] = useState(false)
+
     const [formData, setFormData] = useState({
         noteText: "",
         title: "",
@@ -23,14 +24,13 @@ function EditScreen() {
 
     // get the note from the database
     useEffect(() => {
-        setLoading(true)
+
         const fetchPreviousEntry = async () => {
 
             const docRef = doc(db, 'notes', params.noteId)
             const docSnap = await getDoc(docRef)
             if (docSnap.exists()) {
                 setFormData(docSnap.data())
-                setLoading(false)
             } else {
                 toast.error('This note does not exist')
             }
@@ -52,7 +52,7 @@ function EditScreen() {
         return () => {
             isMounted.current = false
         }
-    }, [auth])
+    }, [auth, formData])
 
     const onClear = () => {
         setFormData({ ...formData, noteText: "", title: "" })
@@ -82,13 +82,11 @@ function EditScreen() {
     useEffect(() => {
         const handleResize = () => {
             setIsSmallScreen(window.innerWidth < 900);
-            console.log(window.innerWidth); // Optional: Log the window width for debugging
-            console.log(isSmallScreen);
-            addEventListener('resize', handleResize)
+            ref.addEventListener('resize', handleResize)
 
         }
         handleResize()
-    }, []);
+    }, [ref]);
 
 
     return (

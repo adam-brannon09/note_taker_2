@@ -11,8 +11,7 @@ import List from '../components/List'
 function NoteScreen() {
     // eslint-disable-next-line
     const auth = getAuth()
-
-
+    const ref = window
     const [isSmallScreen, setIsSmallScreen] = useState(false)
     const [previousEntries, setPreviousEntries] = useState([])
     const [formData, setFormData] = useState({
@@ -31,7 +30,7 @@ function NoteScreen() {
                 if (user) {
                     setFormData({ ...formData, userRef: user.uid })
                 } else {
-                    toast.error('You are not logged in')
+                    console.log('no user')
                 }
             })
         }
@@ -111,7 +110,7 @@ function NoteScreen() {
             setIsSmallScreen(window.innerWidth < 900);
             console.log(window.innerWidth); // Optional: Log the window width for debugging
             console.log(isSmallScreen);
-            addEventListener('resize', handleResize)
+            ref.addEventListener('resize', handleResize)
 
         }
         handleResize()
