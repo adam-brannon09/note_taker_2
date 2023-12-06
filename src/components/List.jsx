@@ -8,7 +8,7 @@ function List({ previousEntries }) {
     const [isSmallScreen, setIsSmallScreen] = useState(false)
 
     // sort previous entries by date
-    const sortedEntries = previousEntries.sort((a, b) => b.date - a.date)
+    const sortedEntries = previousEntries.sort((a, b) => b.createdAt - a.createdAt)
 
     // set isSmallScreen to true if window width is less than 900px
     useEffect(() => {
@@ -43,7 +43,7 @@ function List({ previousEntries }) {
                 <h2 className='text-2xl mb-7 mt-16 text-center font-semibold'>Recent Entries</h2>
 
                 <ul className='entriesList'>
-                    {previousEntries.slice(0, 10).map((entry) => {
+                    {sortedEntries.slice(0, 10).map((entry) => {
                         return (
                             <Link
                                 className="btn btn-wide prevEntry mb-2"

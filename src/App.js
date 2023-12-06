@@ -1,4 +1,3 @@
-import Navbar from "./components/Navbar";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import NoteScreen from "./pages/NoteScreen";
@@ -19,7 +18,6 @@ function App() {
     <>
 
       <Router>
-        {/* <Navbar /> */}
         <Routes>
           <Route path="/" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />

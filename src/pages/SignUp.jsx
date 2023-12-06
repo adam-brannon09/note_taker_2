@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
 import { doc, setDoc } from "firebase/firestore"
 import { db } from "../firebase.config"
-import OAuth from "../components/OAuth"
+
 
 function SignUp() {
     const [showPassword, setShowPassword] = useState(false)
@@ -98,7 +98,7 @@ function SignUp() {
                     </div>
                     <br />
 
-                    {/* <OAuth /> */}
+
                     <Link to='/' className="mt-1">Already a member? Sign In!</Link>
 
 

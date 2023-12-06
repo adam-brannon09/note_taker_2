@@ -45,7 +45,7 @@ function EditScreen() {
                 if (user) {
                     setFormData({ ...formData, userRef: user.uid })
                 } else {
-                    toast.error('You are not logged in')
+                    console.log('no user')
                 }
             })
         }

@@ -79,12 +79,14 @@ function NoteScreen() {
         } else {
             const formDataCopy = {
                 ...formData,
-                date: serverTimestamp(),
+                timeStamp: serverTimestamp(),
+                // createdAt: 
             }
 
             formDataCopy.noteText = noteText
             formDataCopy.title = title
             formDataCopy.noteId = uuidv4()
+            formDataCopy.createdAt = serverTimestamp()
 
             const docRef = await addDoc(collection(db, 'notes'), formDataCopy)
             setFormData({ ...formData, noteText: '', title: '' })
@@ -108,13 +110,11 @@ function NoteScreen() {
     useEffect(() => {
         const handleResize = () => {
             setIsSmallScreen(window.innerWidth < 900);
-            console.log(window.innerWidth); // Optional: Log the window width for debugging
-            console.log(isSmallScreen);
             ref.addEventListener('resize', handleResize)
 
         }
         handleResize()
-    }, []);
+    }, [ref]);
 
 
     return (

@@ -3,18 +3,15 @@ import { useState, useEffect, useRef } from 'react'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '../firebase.config'
-import { useParams, useNavigate, Link } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import { Link } from 'react-router-dom'
+
 
 
 function AllEntries() {
     const auth = getAuth()
-    const params = useParams()
-    const navigate = useNavigate()
     const isMounted = useRef(true)
-
     const [allEntries, setAllEntries] = useState([])
-    const sortedEntries = allEntries.sort((a, b) => b.date - a.date)
+    const sortedEntries = allEntries.sort((a, b) => b.createdAt - a.createdAt)
 
 
     useEffect(() => {
@@ -41,16 +38,6 @@ function AllEntries() {
 
     // get all notes from the database
     useEffect(() => {
-        // const fetchPreviousEntries = async () => {
-
-        //     const querySnapshot = await getDocs(collection(db, 'notes'))
-        //     const entries = []
-        //     querySnapshot.forEach((doc) => {
-        //         console.log(doc.data())
-        //         entries.push({ ...doc.data(), docId: doc.id })
-        //     })
-        //     setAllEntries(entries)
-        // }
         const fetchPreviousEntries = async () => {
             try {
                 const notesRef = collection(db, 'notes')
@@ -74,7 +61,7 @@ function AllEntries() {
 
 
     // if there are no entries, display a message
-    if (allEntries.length === 0) {
+    if (sortedEntries.length === 0) {
         return (
             <>
                 <Navbar />
@@ -89,15 +76,15 @@ function AllEntries() {
                 </div>
             </>
         )
-    } else if (allEntries.length > 0) {
+    } else if (sortedEntries.length > 0) {
         return (
             <>
                 <Navbar />
                 <div className='mb-5'>
 
-                    <p className='text-2xl text-center'>{allEntries.length} Entries</p>
+                    <h2 className='text-4xl text-center'>{allEntries.length} {allEntries.length === 1 ? 'Previous Entry' : 'Previous Entries'}</h2>
                     <br />
-                    {allEntries.map((entry) => {
+                    {sortedEntries.map((entry) => {
                         return (
 
                             <div key={entry.noteId}>
@@ -105,12 +92,12 @@ function AllEntries() {
                                 <div className="collapseContainer">
                                     <div className="collapse bg-base-200">
                                         <input type="checkbox" />
-                                        <div className="collapse-title text-3xl font-semibold ">
-                                            {entry.title}
+                                        <div className="collapse-title text-lg text-center font-semibold ">
+                                            {entry.editedAt ? ` Edited on ${entry.editedAt.toDate().toLocaleDateString()}` : `Created on ${entry.createdAt.toDate().toLocaleDateString()}`} - <span className='text-3xl'>{entry.title}</span>
                                         </div>
                                         <div className="collapse-content">
                                             <Link
-                                                className=""
+                                                className="text-center text-xl"
                                                 to={`/edit/${entry.docId}`}
                                             >
                                                 <p className='text-1xl'>{entry.noteText}</p>

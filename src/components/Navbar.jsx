@@ -1,6 +1,6 @@
 import { getAuth } from "firebase/auth"
 import { Link, useNavigate } from "react-router-dom"
-
+import { toast } from "react-toastify"
 
 
 function Navbar() {
@@ -12,6 +12,7 @@ function Navbar() {
     const onLogout = () => {
         try {
             auth.signOut()
+            toast.success("Signed out successfully")
             navigate("/")
         } catch (error) {
             console.log(error)
