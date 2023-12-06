@@ -27,11 +27,14 @@ function OAuth() {
                     email: user.email,
                     timestamp: serverTimestamp(),
                 })
+                console.log('success')
             }
+
+            docSnap.exists() ? toast.success('Google sign-in success!') : toast.success('Google sign-up success!')
             navigate('/note')
         } catch (error) {
-
-            toast.error('Could not authorize with Google')
+            // toast.error('Could not authenticate with Google!')
+            console.log('Error signing in with Google')
         }
     }
 

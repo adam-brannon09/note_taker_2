@@ -15,16 +15,20 @@ function SignUp() {
         password: "",
     })
 
+    // destructures the formData object
     const { name, email, password } = formData
     const navigate = useNavigate()
 
+    // assigns the value of the input to the corresponding key in the formData object
     const handleChange = (e) => {
         setFormData((prevState) => ({
             ...prevState,
             [e.target.id]: e.target.value,
         }));
     }
-
+    // handles the submit event of the form
+    // prevents the default behavior of the form
+    // creates a new user with the email and password
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
@@ -86,15 +90,15 @@ function SignUp() {
                                 <input
                                     type="checkbox"
                                     className="toggle"
-                                    unchecked
-                                    onClick={() => setShowPassword((prev) => !prev)} />
+                                    checked={showPassword}
+                                    onChange={() => setShowPassword((prev) => !prev)} />
 
                             </label>
                         </div>
                     </div>
                     <br />
 
-                    <OAuth />
+                    {/* <OAuth /> */}
                     <Link to='/' className="mt-1">Already a member? Sign In!</Link>
 
 

@@ -6,13 +6,15 @@ function List({ previousEntries }) {
     const navigate = useNavigate()
     const [isSmallScreen, setIsSmallScreen] = useState(false)
     const [selection, setSelection] = useState('')
+    // sort previous entries by date
+    const sortedEntries = previousEntries.sort((a, b) => b.date - a.date)
 
     // set isSmallScreen to true if window width is less than 900px
     useEffect(() => {
         const handleResize = () => {
             setIsSmallScreen(window.innerWidth < 900);
             console.log(window.innerWidth); // Optional: Log the window width for debugging
-            console.log(isSmallScreen);
+
             addEventListener('resize', handleResize)
 
         }
@@ -30,8 +32,7 @@ function List({ previousEntries }) {
     // if there are no previous entries, display this message
     if (previousEntries.length === 0) {
         return (
-            <div role="alert" className="alert shadow-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <div role="alert" className="alert alertListComponent shadow-lg mb-4">
                 <div>
                     <h3 className="font-bold">New message!</h3>
                     <p className="text-sm">You have no previous entries. Create your note in the text area to the right and hit the save button!.</p>
@@ -51,7 +52,7 @@ function List({ previousEntries }) {
                     value={selection}
                     onChange={handleSelection}
                 >
-                    <option disabled selected>Previous Entries</option>
+                    <option value='' disabled>Previous Entries</option>
                     {previousEntries.map((entry) => {
                         return (
 
@@ -69,13 +70,14 @@ function List({ previousEntries }) {
             </label>
         )
         // if there are previous entries and the screen is large, display a list of buttons
-    } else if (previousEntries.length > 0) {
+    } else if (sortedEntries.length > 0) {
         return (
             // {/* previous entries */ }
             <div className="prevEntries" >
-                <h1 className='text-3xl mb-9 mt-14 text-center'>Previous Entries</h1>
+                <h2 className='text-2xl mb-7 mt-16 text-center font-semibold'>Recent Entries</h2>
+
                 <ul className='entriesList'>
-                    {previousEntries.map((entry) => {
+                    {previousEntries.slice(0, 10).map((entry) => {
                         return (
                             <Link
                                 className="btn btn-wide prevEntry mb-2"

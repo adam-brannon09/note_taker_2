@@ -1,7 +1,7 @@
 import Navbar from '../components/Navbar'
 import { useState, useEffect, useRef } from 'react'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
-import { addDoc, collection, getDocs, serverTimestamp, query, where } from 'firebase/firestore'
+import { addDoc, collection, getDocs, serverTimestamp, where, query } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { v4 as uuidv4 } from 'uuid'
 import { toast } from 'react-toastify'
@@ -178,7 +178,7 @@ function NoteScreen() {
                         Clear
                     </button>
                 </div>
-            </div >
+            </div>
         </>
     )
 }

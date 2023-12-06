@@ -3,14 +3,14 @@ import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { getAuth, sendPasswordResetEmail } from 'firebase/auth'
 
-
-
-
 function ForgotPassword() {
 
     const [email, setEmail] = useState('')
     const navigate = useNavigate()
 
+    // handles the submit event of the form
+    // prevents the default behavior of the form
+    // sends a password reset email to the user
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
@@ -22,7 +22,7 @@ function ForgotPassword() {
             toast.error('Error sending password reset email')
         }
     }
-
+    // assigns the value of the input to the corresponding key in the formData object
     const handleChange = (e) => {
         setEmail(e.target.value)
     }
@@ -51,11 +51,8 @@ function ForgotPassword() {
                         <button className="btn btn-lg btn-wide">
                             Get Reset Link
                         </button>
-
                     </div>
-
-                    <Link to='/' className='mt-4'>Sign In</Link>
-
+                    <Link to='/' className='mt-4'>Back To Sign In</Link>
                 </form>
             </div>
 
