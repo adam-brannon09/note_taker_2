@@ -11,9 +11,6 @@ function EditScreen() {
     const params = useParams()
     const navigate = useNavigate()
     const isMounted = useRef(true)
-    const ref = window
-
-    const [isSmallScreen, setIsSmallScreen] = useState(false)
 
     const [formData, setFormData] = useState({
         noteText: "",
@@ -21,6 +18,8 @@ function EditScreen() {
 
     })
     const { noteText, title } = formData
+
+    const isSmallScreen = window.matchMedia("(max-width: 500px)").matches
 
     // get the note from the database
     useEffect(() => {
@@ -79,29 +78,22 @@ function EditScreen() {
         setFormData({ ...formData, [e.target.id]: e.target.value })
     }
 
-    useEffect(() => {
-        const handleResize = () => {
-            setIsSmallScreen(window.innerWidth < 900);
-            ref.addEventListener('resize', handleResize)
 
-        }
-        handleResize()
-    }, [ref]);
 
 
     return (
 
         <>
             <Navbar />
-            <div className="noteScreen">
+            <div className={isSmallScreen ? "editScreenSmall" : "noteScreen"}>
                 {/* note input area */}
                 <div className='textareaContainer' onSubmit={onSubmit}>
                     <div className='titleDiv'>
-                        <label className='text-4xl' htmlFor="title">Note Title:</label>
+                        <label className={isSmallScreen ? 'text-2xl mr-3' : 'text-4xl'} htmlFor="title">Note Title:</label>
                         {/* note title input */}
                         <input
                             type="text"
-                            className='input input-bordered titleInput'
+                            className={isSmallScreen ? "noteScreenInputSmall input input-bordered title-input" : "input input-bordered titleInput"}
                             id='title'
                             value={title}
                             placeholder='Enter note title here...'
@@ -115,7 +107,7 @@ function EditScreen() {
                     {/* note text input */}
                     <textarea
 
-                        className="textarea textarea-bordered"
+                        className={isSmallScreen ? "textAreaSmall textarea textarea-bordered" : "textarea textarea-bordered"}
                         placeholder="Enter your notes here..."
                         value={noteText}
                         id="noteText"

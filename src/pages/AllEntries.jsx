@@ -12,6 +12,7 @@ function AllEntries() {
     const isMounted = useRef(true)
     const [allEntries, setAllEntries] = useState([])
     const sortedEntries = allEntries.sort((a, b) => b.createdAt - a.createdAt)
+    const isSmallScreen = window.matchMedia("(max-width: 500px)").matches
 
 
     useEffect(() => {
@@ -82,7 +83,7 @@ function AllEntries() {
                 <Navbar />
                 <div className='mb-5'>
 
-                    <h2 className='text-4xl text-center'>{allEntries.length} {allEntries.length === 1 ? 'Previous Entry' : 'Previous Entries'}</h2>
+                    <h2 className={isSmallScreen ? 'text-2xl text-center' : 'text-4xl text-center'}>{allEntries.length} {allEntries.length === 1 ? 'Previous Entry' : 'Previous Entries'}</h2>
                     <br />
                     {sortedEntries.map((entry) => {
                         return (
@@ -93,7 +94,7 @@ function AllEntries() {
                                     <div className="collapse bg-base-200">
                                         <input type="checkbox" />
                                         <div className="collapse-title text-lg text-center font-semibold ">
-                                            {entry.editedAt ? ` Edited on ${entry.editedAt.toDate().toLocaleDateString()}` : `Created on ${entry.createdAt.toDate().toLocaleDateString()}`} - <span className='text-3xl'>{entry.title}</span>
+                                            {entry.editedAt ? ` Edited on ${entry.editedAt.toDate().toLocaleDateString()}` : `Created on ${entry.createdAt.toDate().toLocaleDateString()}`} - <span className={isSmallScreen ? 'text-2xl font-semibold' : 'text-3xl'}>{entry.title}</span>
                                         </div>
                                         <div className="collapse-content">
                                             <Link

@@ -54,21 +54,35 @@ body {
 .noteScreen {
 	display: flex;
 	flex-direction: row;
-	height: 95vh;
+	height: 80vh;
 	justify-content: space-evenly;
 	margin: 0 4rem;
 }
 
-@media (max-width: 900px) {
-	.navbar {
-		text-align: center;
-	}
-	.noteScreen {
-		/* display: flex; */
-		flex-direction: column;
-		height: 100vh;
-		align-items: center;
-	}
+.noteScreenSmall {
+	/* display: flex; */
+	flex-direction: column;
+	height: 60vh;
+	align-items: center;
+}
+
+.entriesFalse {
+	flex-direction: column;
+	height: 100vh;
+	align-items: center;
+}
+
+.editScreenSmall {
+	flex-direction: column;
+	height: 70vh;
+	align-items: center;
+}
+
+.noteScreenInputSmall {
+	width: 63%;
+}
+
+@media (max-width: 500px) {
 	.actionsContainer2 {
 		display: flex;
 		flex-direction: row;
@@ -78,7 +92,7 @@ body {
 	}
 	.actionsContainer2 button {
 		width: 30%;
-		margin: 1rem;
+		margin-top: 1rem;
 	}
 }
 

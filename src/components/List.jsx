@@ -1,24 +1,12 @@
 import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
 
 
 function List({ previousEntries }) {
 
-    const ref = window
-    const [isSmallScreen, setIsSmallScreen] = useState(false)
+    const isSmallScreen = window.matchMedia("(max-width: 500px)").matches
 
     // sort previous entries by date
     const sortedEntries = previousEntries.sort((a, b) => b.createdAt - a.createdAt)
-
-    // set isSmallScreen to true if window width is less than 900px
-    useEffect(() => {
-        const handleResize = () => {
-            setIsSmallScreen(window.innerWidth < 900);
-
-            ref.addEventListener('resize', handleResize)
-        }
-        handleResize()
-    }, [ref]);
 
     // if there are no previous entries, display this message
     if (previousEntries.length === 0) {

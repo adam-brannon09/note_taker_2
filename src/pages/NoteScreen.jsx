@@ -11,8 +11,6 @@ import List from '../components/List'
 function NoteScreen() {
     // eslint-disable-next-line
     const auth = getAuth()
-    const ref = window
-    const [isSmallScreen, setIsSmallScreen] = useState(false)
     const [previousEntries, setPreviousEntries] = useState([])
     const [formData, setFormData] = useState({
         noteText: "",
@@ -23,6 +21,8 @@ function NoteScreen() {
     const { noteText, title } = formData
 
     const isMounted = useRef(true)
+
+    const isSmallScreen = window.matchMedia("(max-width: 500px)").matches
 
     useEffect(() => {
         if (isMounted) {
@@ -107,30 +107,23 @@ function NoteScreen() {
         }));
 
     }
-    useEffect(() => {
-        const handleResize = () => {
-            setIsSmallScreen(window.innerWidth < 900);
-            ref.addEventListener('resize', handleResize)
 
-        }
-        handleResize()
-    }, [ref]);
 
 
     return (
         <>
             <Navbar />
-            <div className="noteScreen">
+            <div className={isSmallScreen ? "noteScreenSmall" : "noteScreen"}>
                 {/* previous entries */}
                 <List previousEntries={previousEntries} />
                 {/* note input area */}
                 <div className='textareaContainer' onSubmit={onSubmit}>
                     <div className='titleDiv'>
-                        <label className='text-4xl' htmlFor="title">Note Title:</label>
+                        <label className={isSmallScreen ? 'text-2xl mr-3' : 'text-4xl'} htmlFor="title">Note Title:</label>
                         {/* note title input */}
                         <input
                             type="text"
-                            className='input input-bordered titleInput'
+                            className={isSmallScreen ? "noteScreenInputSmall input input-bordered title-input" : "input input-bordered titleInput"}
                             id='title'
                             value={title}
                             placeholder='Enter note title here...'
