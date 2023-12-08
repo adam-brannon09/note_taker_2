@@ -1,70 +1,98 @@
-# Getting Started with Create React App
+<div align="center">
+<img src="https://forthebadge.com/images/badges/made-with-javascript.svg" alt="js">
+<img src="https://forthebadge.com/images/badges/makes-people-smile.svg" alt="smile">
+<img src="https://forthebadge.com/images/badges/powered-by-coffee.svg" alt="coffee">
+<img src="https://forthebadge.com/images/badges/ctrl-c-ctrl-v.svg" alt="ctrl_c">
+<img src="https://forthebadge.com/images/badges/not-a-bug-a-feature.svg" alt="bug">
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Note Taker
 
-## Available Scripts
 
-In the project directory, you can run:
+## Description
+Note Taker is a simple application that allows the user to create, save, edit, and delete notes. The application uses Google Firebase and Firestore for user authentication and storage of data. It is deployed on Vercel and can be accessed [here](https://note-taker-2-icr6jae1l-adam-brannons-projects.vercel.app/).
 
-### `npm start`
+## Quick Links
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [Installation](#installation)
+  
+- [Usage](#usage)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [Technologies](#technologies)
 
-### `npm test`
+- [Demo](#demo)
+  
+- [Contributors](#contributors)
+  
+- [Feedback and Support](#feedback-and-support)
+  
+- [License](#license)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+To install this application, please follow the below instructions:
+- Clone the repository files to your local machine
+- Open the repository in your code editor of choice
+- Open the terminal and run the command `npm install` to install the required dependencies
+- Once the dependencies are installed, run npm start to start the application
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Usage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- To use Note Taker:
+    - Navigate to the deployed application [here](https://note-taker-2-icr6jae1l-adam-brannons-projects.vercel.app/)
+    - Click the "Not a member? Sign Up" link under the sign-in form
+    - Enter your name, email address, and password and click the "Register" button
+    - You will be redirected to the note screen
+    - Enter the title and content of your note in the appropriate fields
+    - Click the "Save" button to save your note
+    - Click the "Previous Entry" to the left of the text area that you would like to edit
+    - Edit the title and content of your note in the appropriate fields and click the "Save" button to save your changes
+        - If you would like to delete the note, click the "Delete" button and you will be redirected to the note screen
+    - Click the "Logout" button to log out of the application
+    - You will be redirected to the login screen
 
-### `npm run eject`
+## Technologies
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<div style="display:flex;">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" style="width:100px;height:auto;padding:50px;"/>       
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" style="width:100px;height:auto;padding:50px;" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg" style="width:100px;height:auto;padding:50px;" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain-wordmark.svg" style="width:100px;height:auto;padding:50px;"/>
+</div>          
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+          
+          
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Demo
+<div style="align:center">
+<img src="./src/assets/gif/noteGif.gif" style="width:900px;height:auto;">
+</div>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## Contributors
+Adam Brannon
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+[Github](https://github.com/adam-brannon09)
 
-### Analyzing the Bundle Size
+[Email Me](mailto:adam.brannon09@icloud.com)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+## Feedback and Support
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+If you encounter any issues while using Note Taker or have any suggestions for improvement, please [open an issue](https://github.com/adam-brannon09/note_taker_2/issues) on the GitHub repository. I appreciate your feedback and will address any concerns as soon as possible.
 
-### Advanced Configuration
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+The Note Taker is released under the [MIT License](https://opensource.org/licenses/MIT). You are free to use, modify, and distribute this application as per the terms of this license.
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<div align="center">
+    <img src="https://forthebadge.com/images/badges/built-by-developers.svg" />
+    <img src="https://forthebadge.com/images/badges/license-mit.svg" alt="mit"> 
+</div>
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
