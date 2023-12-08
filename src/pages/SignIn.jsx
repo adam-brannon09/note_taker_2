@@ -12,6 +12,8 @@ function SignIn() {
         password: "",
     })
 
+    const isSmallScreen = window.matchMedia("(max-width: 500px)").matches
+
     const { email, password } = formData
     const navigate = useNavigate()
 
@@ -45,11 +47,11 @@ function SignIn() {
         <div className="welcome" >
             <h1 className="title">Note Taker</h1>
             <div >
-                <form onSubmit={handleSubmit} className="formContainer">
+                <form onSubmit={handleSubmit} className="formContainer formContainerSmall">
                     {/* email input */}
                     <input
                         type='email'
-                        className='input input-lg input-bordered input-email'
+                        className={isSmallScreen ? 'input input-lg input-bordered inputEmailSmall' : 'input input-lg input-bordered input-email'}
                         placeholder='Email'
                         id='email'
                         value={email}
@@ -58,7 +60,7 @@ function SignIn() {
                     {/* password input */}
                     <input
                         type={showPassword ? 'text' : 'password'}
-                        className='input input-lg input-bordered input-password'
+                        className={isSmallScreen ? 'input input-lg input-bordered inputPasswordSmall' : 'input input-lg input-bordered input-password'}
                         placeholder='Password'
                         id='password'
                         value={password}

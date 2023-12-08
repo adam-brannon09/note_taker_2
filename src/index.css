@@ -38,12 +38,23 @@ body {
 
 .input-email {
 	margin: 1rem;
-	width: 400px;
+	width: 25rem;
+}
+
+.inputEmailSmall {
+	margin: 1rem;
+	width: 20rem;
 }
 
 .input-password {
 	margin: 1rem;
-	width: 400px;
+	width: 25rem;
+	margin-bottom: 3rem;
+}
+
+.inputPasswordSmall {
+	margin: 1rem;
+	width: 20rem;
 	margin-bottom: 3rem;
 }
 

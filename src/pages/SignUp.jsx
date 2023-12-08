@@ -15,6 +15,8 @@ function SignUp() {
         password: "",
     })
 
+    const isSmallScreen = window.matchMedia("(max-width: 500px)").matches
+
     // destructures the formData object
     const { name, email, password } = formData
     const navigate = useNavigate()
@@ -55,7 +57,7 @@ function SignUp() {
                     {/* name input */}
                     <input
                         type='text'
-                        className='input input-lg input-bordered input-email'
+                        className={isSmallScreen ? 'input input-lg input-bordered inputEmailSmall' : 'input input-lg input-bordered input-email'}
                         placeholder='Name'
                         id='name'
                         value={name}
@@ -64,7 +66,7 @@ function SignUp() {
                     {/* email input */}
                     <input
                         type='email'
-                        className='input input-lg input-bordered input-email'
+                        className={isSmallScreen ? 'input input-lg input-bordered inputEmailSmall' : 'input input-lg input-bordered input-email'}
                         placeholder='Email'
                         id='email'
                         value={email}
@@ -74,7 +76,7 @@ function SignUp() {
                     {/* password input */}
                     <input
                         type={showPassword ? 'text' : 'password'}
-                        className='input input-lg input-bordered input-password'
+                        className={isSmallScreen ? 'input input-lg input-bordered inputPasswordSmall' : 'input input-lg input-bordered input-password'}
                         placeholder='Password'
                         id='password'
                         value={password}
