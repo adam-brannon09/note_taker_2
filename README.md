@@ -55,10 +55,10 @@ To install this application, please follow the below instructions:
 ## Technologies
 
 <div style="display:flex;">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" style="width:100px;height:auto;padding:50px;"/>       
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" style="width:100px;height:auto;padding:50px;" />
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg" style="width:100px;height:auto;padding:50px;" />
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain-wordmark.svg" style="width:100px;height:auto;padding:50px;"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" style="width:100px;height:auto;padding:50px;margin-right:50px;"/>       
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" style="width:100px;height:auto;padding:50px;margin-right:50px;" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg" style="width:100px;height:auto;padding:50px;margin-right:50px;" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain-wordmark.svg" style="width:100px;height:auto;padding:50px;margin-right:50px;"/>
 </div>          
 
           
